@@ -90,15 +90,11 @@ public class CaptureFlag : WalkState {
     base.Enter();
   }
   public override void Update(float deltaTime) {
-    //caminha apenas se estiver com mais de 50% de energia
     if(Agent.Data.Energy <= 3) {
       var nextState = ExampleStateJulia.IDLE;
       ChangeState(nextState);
       Log($"NextState:{nextState}");
     }
-    //se energia entre 20 e 30%, buscar energia mais proxima
-    //Agent.Data.Energy >= 20 || Agent.Data.Energy <= 30
-    //Agent.Data.Energy <= 40
     else if (Agent.Data.Energy >= 20 || Agent.Data.Energy <= 30) {
       foreach (var powerUp in Agent.Data.PowerUps) {
         if (Vector3.Distance(Agent.Data.Position, powerUp) <= 15f) {
@@ -113,7 +109,6 @@ public class CaptureFlag : WalkState {
       Agent.Fire();
       Agent.Move(Destination);
     }
-    //se está com 1 de municao, buscar municao mais proxima
     else if (Agent.Data.Ammo == 0) {
       var nextState = ExampleStateJulia.WALK_MUNITION;
       ChangeState(nextState);
@@ -125,27 +120,6 @@ public class CaptureFlag : WalkState {
       ChangeState(nextState);
       Log($"NextState:{nextState}");
     }
-
-    //caminha apenas se estiver com mais de 50% de energia
-    //if(Agent.Data.Energy >= 50) {
-    //  var nextState = ExampleStateJulia.IDLE;
-    //  ChangeState(nextState);
-    //  Log($"NextState:{nextState}");
-    //}
-
-    //se energia entre 20 e 30%, buscar energia mais proxima
-    //if(Agent.Data.Energy >= 20 || Agent.Data.Energy <= 30) {
-    //  var nextState = ExampleStateJulia.WALK_ENERGY;
-    //  ChangeState(nextState);
-    //  Log($"NextState:{nextState}");
-    //}
-
-    //se está com 1 de municao, buscar municao mais proxima
-    //if(Agent.Data.Energy <= 1) {
-    //  var nextState = ExampleStateJulia.WALK_MUNITION;
-    // ChangeState(nextState);
-    //  Log($"NextState:{nextState}");
-    //}
   }
 }
 
